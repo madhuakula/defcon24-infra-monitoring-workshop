@@ -1,6 +1,7 @@
 # General Best Practice
 
 ### Elasticsearch Best Practice
+
 - set `$ES_HEAP_SIZE` env var to 1/2 of RAM (but < 32GB)
 - Disable memory swapping by enabling `bootstrap.mlockall`
 - Set user's file `ulimit` to `unlimited` (Need reboot to check)
@@ -12,8 +13,6 @@
 - Add lightweight client nodes (no data)
 - Use Snapshot and Restore. This is very useful (but different from `replication`)
 
----
-
 ### Logstash Best Practice
 
 - Watch out for Grok Filter data (GREEDYDATA) as they use a lot of resources especially CPU and Memory. Try to get as specific as possible
@@ -23,8 +22,6 @@
 - Use the generator input for benchmarking (https://github.com/matejzero/logstash-benchmark) and to understand performance and optimisation metrics
 - If something goes wrong try `-- debug` for more detailed output (don't forgot to turn this off when you are done)
 
----
-
 ### Kibana Best Practice
 
 - Tune Queries in elasticsearch for maximum performance
@@ -32,8 +29,6 @@
 - Save and Export dashboards as a JSON File for reuse
 - Deploy a proxy so that you can do basic authentication and other load balancing services
 - While Kibana is an exploration tool, make sure you watch out for over-eager users affecting performance
-
----
 
 ### Production 
 
@@ -45,18 +40,12 @@
 	- Disable destructive actions
 	`action.destructive_requires_name: true`
 	- Use aliases to allow users access to subsets of indices
-
----
-
 - VM vs Metal
 	- VM's are convenient (Auto scaling, no management, etc)
 	- Bare metal is generally more configurable and higher in performance
 	- Metal can utilize SSD's
 	- Cloud VM's can suffer from `noisy neighbors` 
 	- But you should start using what you're most familiar with!
-
----
-
 - Disks
 	- Spinning disk's are cheaper per GB
 	- SSDs have better IOPS
@@ -67,22 +56,15 @@
 		- But striping can help with performance
 		- You can use shards and replicas in ES
 
----
-
 ### Security 
 
 - Harden the base server with traditional security techniques
 - Use SSH key for login 
 - Remove root login
-- Use randomly generated passwords
-```
-openssl rand -base64 24
-```
+- Use randomly generated passwords `openssl rand -base64 24`
 - Enable the host firewall and allow only connections from specific IPs
 - Use SSL certificates and enable HTTPS for Elasticsearch, Logstash & Kibana (E.g.: Lets encrypt)
 - Use search guard for granular permissions and role based authentication for ELK (Shield is an alternative)
-
----
 
 ### Monitoring Services
 

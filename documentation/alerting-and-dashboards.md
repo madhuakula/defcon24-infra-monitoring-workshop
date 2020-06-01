@@ -1,17 +1,10 @@
-# Alerting & Attack patterns dashboard
-<small>[30 minutes]</small>
-
----
+# Alerting & Attack patterns dashboard [30 minutes]
 
 ## Alerting
-
-----
 
 ### What is alerting for ELK stack?
 
 > We can set up a notification system to let users/admins know that a pattern match has occurred.
-
-----
 
 ### How is this achieved?
 
@@ -20,20 +13,9 @@
 - An open source alerting for elasticsearch by Yelp called `elastalert`
 - Custom scripts
 
-----
+### Creating an alert for DDoS attack on SSH Logs (hands on)
 
-### Creating an alert for DDoS attack on SSH Logs
-(hands on)
-
-----
-
-<div align="left">Create a new log configuration using</div>
-
-```
-sudo vi /etc/logstash/conf.d/ddos.conf
-```
-
-----
+* Create a new log configuration using `sudo vi /etc/logstash/conf.d/ddos.conf`
 
 ```
 input {
@@ -101,17 +83,13 @@ output {
 }
 ```
 
-----
-
-<div align="left">Load the DDoS config file</div>
+* Load the DDoS config file
 
 ```
 sudo /opt/logstash/bin/logstash -f /etc/logstash/conf.d/ddos.conf
 ```
 
-----
-
-- Check the mailbox of `root` user 
+* Check the mailbox of `root` user 
 
 ```
 sudo -i
@@ -119,54 +97,33 @@ sudo -i
 mail
 ```
 
-----
-
 ### Other options
-Elastalert (https://elastalert.readthedocs.io/en/latest/)
-<br />
-<br />
-`Watcher` is another commercial product for alerting on top of Elasticsearch
 
----
+* Elastalert (https://elastalert.readthedocs.io/en/latest/)
+* `Watcher` is another commercial product for alerting on top of Elasticsearch
 
-## Dashboards for Attack Patterns
-(hands on)
 
-Note: We have already imported logs to Elasticsearch using curator. <br />
-Now create some advanced dashboards for attack patterns using Kibana
+## Dashboards for Attack Patterns (hands on)
 
-----
+* Note: We have already imported logs to Elasticsearch using curator
+* Now create some advanced dashboards for attack patterns using Kibana
 
 ### Web Attack Dashboard
 
 ![Web Attack Dashboard](images/kibana-web-dashboard.png)
 
-----
-
 ### SSH Attack Dashboard
 
 ![SSH Attack Dashboard](images/kibana-ssh-dashboard.png)
-
-----
 
 ### Combined Attack Dashboard
 
 ![Attack Dashboard](images/kibana-attack-dashboard.png)
 
----
-
 ### Pre-created dashboards
-
-----
 
 #### Import the JSON which is already existing in your folder
 
 1. Go to the kibana settings
 2. Select import 
 3. Select the JSON file `/dashboards/all-kibana.json`
-
----
-
-### [Ansible Playbook](05-ansible-playbook.md)
-
-
